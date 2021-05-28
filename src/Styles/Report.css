@@ -1,6 +1,16 @@
+.calendar-select {
+  color: #363740;
+  background-color: white;
+}
+
+.calendar-button button {
+  background-color: #363740 !important;
+  border: none !important;
+}
+
 .graphics-reports {
   background-color: white;
-  color: red;
+  color: #363740;
   height: 25rem;
   width: 100%;
   min-width: 50%;
