@@ -1,0 +1,47 @@
+.navegation-background {
+  height: 100vh;
+  width: 13rem;
+  background: #363740;
+  right: 0;
+  top: 0;
+  position: sticky;
+  float: left;
+  z-index: 1;
+}
+.navegation-avatar {
+  color: #1e1f29;
+  height: 5rem !important;
+  width: 5rem !important;
+  font-size: 3rem !important;
+  border-radius: 40% !important;
+}
+.navegation-username {
+  color: #a4a6b3;
+  font-size: 1.2rem;
+}
+.navegation-background-item {
+  height: 3rem;
+  width: 13rem;
+  text-decoration: none !important;
+}
+
+.navegation-background-item-selected {
+  height: 3rem;
+  width: 13rem;
+  text-decoration: none !important;
+  background: #3f4049;
+}
+.navegation-icon-item {
+  font-size: 1.2rem;
+  color: #a4a6b3;
+}
+.navegation-icon-text {
+  font-size: 1.1rem;
+  color: #a4a6b3;
+}
+.navegation-item-line {
+  height: 3rem;
+  width: 0.1rem;
+  background: #a4a6b3;
+  position: absolute;
+}

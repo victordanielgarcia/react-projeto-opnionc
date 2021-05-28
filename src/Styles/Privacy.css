@@ -1,0 +1,44 @@
+.privacy-background {
+  height: 100vh;
+  width: 100%;
+  background: #f4f4f4;
+}
+.privacy-header {
+  height: 100vh;
+  width: 18rem;
+  background: #363740;
+  float: left;
+  position: sticky;
+}
+.privacy-content {
+  text-align: justify;
+  height: 100vh;
+  overflow-y: auto;
+  color: #6c757d;
+  font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+}
+.privacy-title {
+  color: #343a40;
+}
+.privacy-hr {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.privacy-opinionc {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+}
+.privacy-menu-item {
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.privacy-header :hover {
+  cursor: pointer;
+  color: white;
+}

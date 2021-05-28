@@ -1,0 +1,9 @@
+.graphics-reports {
+  background-color: white;
+  color: red;
+  height: 25rem;
+  width: 100%;
+  min-width: 50%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

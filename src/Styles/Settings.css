@@ -1,0 +1,52 @@
+.settings-icon-background {
+  width: 2rem;
+  height: 2rem;
+  background-color: #363740;
+}
+.settings-icon {
+  font-size: 1.5rem;
+  color: white !important;
+}
+.settings-title {
+  font-size: 1.5rem;
+}
+.settings-input {
+  width: 100%;
+  border: 0 !important;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
+  transition: box-shadow 0.15s ease !important;
+  background: #f4f4f4 !important;
+}
+
+.settings-input-on-button {
+  width: 3.8rem;
+  background-color: #363740 !important;
+  border: 1px solid #363740 !important;
+}
+
+.settings-button-icon {
+  font-size: 1.2rem;
+}
+
+.settings-save-button {
+  height: 2.5rem;
+  width: 6rem;
+  background-color: #363740 !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border: 1px solid #363740 !important;
+}
+
+.settings-checkbox div {
+  background: white !important;
+  border-color: #363740 !important;
+  box-shadow: none !important;
+}
+.settings-checkbox-selected div {
+  background: #363740 !important;
+  border-color: #363740 !important;
+  box-shadow: none !important;
+}
+.settings-alert-password {
+  color: red !important;
+}

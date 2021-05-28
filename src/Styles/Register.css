@@ -1,0 +1,75 @@
+.register-background {
+  height: 100vh;
+  background: linear-gradient(172deg, #363740, #363740 60%, white 60%, white);
+}
+.register-header {
+  margin-left: 6rem;
+  margin-right: 6rem;
+  height: 60px;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none !important;
+}
+
+.register-header span :hover {
+  cursor: pointer;
+  color: rgb(144, 148, 151) !important;
+}
+.register-container {
+  height: calc(100vh - 120px);
+  width: 100%;
+}
+.register-container-white {
+  height: 27rem;
+  width: 25rem;
+  background: #f4f4f4 !important;
+  border-radius: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-button {
+  background: #363740 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2.8rem;
+}
+.register-opinionc {
+  font-size: 2rem;
+}
+.register-input {
+  width: 18rem;
+  height: 2.8rem;
+}
+.register-input {
+  width: 18rem;
+  border: 0 !important;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
+  transition: box-shadow 0.15s ease !important;
+}
+.register-footer {
+  height: 60px;
+  margin-left: 2rem;
+  color: #363740;
+  font-size: 1.11rem;
+}
+.register-link {
+  cursor: pointer;
+}
+.register-dialog-confirm {
+  background: #da0d0d !important;
+  border: 0;
+}
+.register-dialog-reject {
+  color: white;
+  background: #363740 !important;
+  border: none;
+}
+
+.register-header-link {
+  text-decoration: none !important;
+  color: white !important;
+}
+.register-privacy {
+  font-size: 0.95rem;
+}

@@ -1,0 +1,25 @@
+.researches-button-search {
+  background: #363740 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.researches-addnew-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.researches-addnew-text {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.researches-button {
+  background: #363740 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2rem;
+}
+.researches-button-modal {
+  background: #363740 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2.5rem;
+}

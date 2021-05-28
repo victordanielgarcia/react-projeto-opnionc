@@ -1,0 +1,42 @@
+.help-icon-background {
+  width: 2rem;
+  height: 2rem;
+  background-color: #363740;
+}
+.help-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+.help-title {
+  font-size: 1.5rem;
+}
+.help-content-header {
+  font-size: 1.3rem;
+}
+.help-content-body {
+  font-size: 0.94rem;
+}
+@media screen and (max-width: 300px) {
+  .help-navigation {
+    height: 6rem !important;
+  }
+}
+
+.help-navigation {
+  background-color: #363740;
+  height: 4.5rem;
+}
+
+.help-button {
+  background-color: white;
+  font-size: 0.8rem;
+  width: 10rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 2.9rem;
+}
+.help-button:hover {
+  background-color: #363740;
+  color: white;
+}

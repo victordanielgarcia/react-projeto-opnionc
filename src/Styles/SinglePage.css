@@ -1,0 +1,38 @@
+.single-header-background {
+  background: #36374079;
+  width: 100%;
+  height: 5rem;
+  color: white;
+  position: fixed;
+}
+.single-acess-background {
+  background: #363740;
+  height: 3rem;
+  width: 10rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.single-acess-background span :hover {
+  cursor: pointer;
+  color: rgb(144, 148, 151) !important;
+}
+
+.single-image {
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background: rgb(190, 193, 196);
+}
+.single-opinionc {
+  font-size: 1.5rem;
+}
+.single-text-description {
+  color: white;
+  width: 50%;
+  height: 500px;
+  text-align: center;
+}
+.single-header-link {
+  text-decoration: none !important;
+  color: white !important;
+}
