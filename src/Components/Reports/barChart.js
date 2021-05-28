@@ -2,31 +2,32 @@ import React from "react";
 
 import { ResponsiveBar } from "@nivo/bar";
 
-function BarChart() {
+function BarChart(props) {
+  const { votesTotal } = props;
   const data = [
     {
       Estrelas: "0 Estrela",
-      Votos: 2,
+      Votos: Math.floor(votesTotal * 0.02),
     },
     {
       Estrelas: "1 Estrelas",
-      Votos: 14,
+      Votos: Math.floor(votesTotal * 0.05),
     },
     {
       Estrelas: "2 Estrelas",
-      Votos: 15,
+      Votos: Math.floor(votesTotal * 0.15),
     },
     {
       Estrelas: "3 Estrelas",
-      Votos: 18,
+      Votos: Math.floor(votesTotal * 0.2),
     },
     {
       Estrelas: "4 Estrelas",
-      Votos: 24,
+      Votos: Math.floor(votesTotal * 0.16),
     },
     {
       Estrelas: "5 Estrelas",
-      Votos: 62,
+      Votos: Math.floor(votesTotal * 0.4),
     },
   ];
 

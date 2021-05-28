@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { addLocale } from "primereact/api";
+import { Dropdown } from "primereact/dropdown";
 import moment from "moment";
 import "moment/locale/pt-br";
 
@@ -9,6 +10,7 @@ import { AuthContext } from "../Configs/ContextProvider";
 
 import "../Styles/Report.css";
 import BarChart from "../Components/Reports/barChart";
+import LineChart from "../Components/Reports/lineChart";
 
 function Reports() {
   const { setCurrentPage } = useContext(AuthContext);
@@ -25,9 +27,22 @@ function Reports() {
     new Date(moment().format()),
   );
 
+  const [votesTotal, setVotesTotal] = useState(0);
+  const [searchActive, setSearchActive] = useState(false);
+
+  const [reportType, setReportType] = useState({ name: "", code: "" });
+  const reportOptions = [
+    { name: "Todos", code: "all" },
+    { name: "Teste 1", code: "teste1" },
+    { name: "Teste 2", code: "teste2" },
+  ];
+
   function searchReport() {
     setSearchStartDate(startDate);
     setSearchEndDate(endDate);
+    if (reportType.code !== "") {
+      setSearchActive(true);
+    }
   }
 
   addLocale("pt", {
@@ -137,36 +152,53 @@ function Reports() {
             </Button>
           </div>
         </div>
-        <div className="p-grid">
-          <div className="graphics-reports p-col-12 p-md-12">
-            <p className="p-p-0 p-m-0">
-              <b>Quantidade de Votos por Avaliação</b>
-              <br />
-              135
-              <small>
-                <br />
-                {`No Período: ${moment(searchStartDate).format(
-                  "DD/MM/YYYY",
-                )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
-              </small>
-            </p>
-            <BarChart />
-          </div>
-          <div className="graphics-reports p-col-12 p-md-12">
-            <p className="p-p-0 p-m-0">
-              <b>Faturamento</b>
-              <br />
-              30
-              <small>
-                <br />
-                {`No Período: ${moment(searchStartDate).format(
-                  "DD/MM/YYYY",
-                )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
-              </small>
-            </p>
-            <BarChart />
-          </div>
+
+        <div className="p-d-flex p-jc-center">
+          <Dropdown
+            optionLabel="name"
+            value={reportType}
+            options={reportOptions}
+            className="p-col-6 p-justify-center p-p-0 p-m-0"
+            onChange={(e) => setReportType(e.value)}
+            placeholder="Selecione um Tipo"
+          />
         </div>
+        {reportType.code !== "" && searchActive && (
+          <div className="p-grid">
+            <div className="graphics-reports p-col-12 p-md-12">
+              <p className="p-p-0 p-m-0">
+                <b>Quantidade de Votos por Avaliação</b>
+                <br />
+                {votesTotal}
+                <small>
+                  <br />
+                  {`No Período: ${moment(searchStartDate).format(
+                    "DD/MM/YYYY",
+                  )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
+                </small>
+              </p>
+              <BarChart votesTotal={votesTotal} />
+            </div>
+            <div className="graphics-reports p-col-12 p-md-12">
+              <p className="p-p-0 p-m-0">
+                <b>Votos por Dia</b>
+                <br />
+                {votesTotal}
+                <small>
+                  <br />
+                  {`No Período: ${moment(searchStartDate).format(
+                    "DD/MM/YYYY",
+                  )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
+                </small>
+              </p>
+              <LineChart
+                searchStartDate={searchStartDate}
+                searchEndDate={searchEndDate}
+                setVotesTotal={setVotesTotal}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ function Researches() {
     formAnswersList,
     setFormAnswersList,
     userData,
+    userCode,
   } = useContext(AuthContext);
 
   const [selectedResearches, setSelectedResearches] = useState("");
@@ -46,7 +47,6 @@ function Researches() {
 
   function copyResearchesLink() {
     const textArea = document.createElement("textarea");
-
     textArea.value = `http://localhost:3000/a/${selectedResearches}`;
     document.body.appendChild(textArea);
     textArea.select();
@@ -58,6 +58,7 @@ function Researches() {
     getDataResearches();
     getDataFormAnswers();
     setCurrentPage("Pesquisas");
+    userCode("Pesquisas");
     // eslint-disable-next-line
   }, []);
 
