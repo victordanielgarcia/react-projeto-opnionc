@@ -17,9 +17,131 @@
   box-shadow: none !important;
   height: 2rem;
 }
+.researches-button-delete {
+  background: #d60808 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2rem;
+}
+.researches-button-editar {
+  background: orange !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2rem;
+}
+.researches-button-sended {
+  background: #c9bf35 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2rem;
+}
 .researches-button-modal {
   background: #363740 !important;
   border: none !important;
   box-shadow: none !important;
   height: 2.5rem;
+}
+.researches-button-modal-edit {
+  background: orange !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2.5rem;
+}
+.researches-button-modal-delete {
+  background: #d60808 !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 2.5rem;
+}
+.researches-icon-add {
+  font-size: 1.5rem;
+  color: green;
+  cursor: pointer;
+}
+.researches-icon-select {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.researches-menu {
+  border: 1px solid;
+  cursor: pointer;
+}
+.researches-text-add {
+  cursor: pointer;
+}
+.researches-header {
+  height: 30px;
+}
+
+.researches-input-on-button {
+  height: 2.2rem;
+  width: 3.8rem;
+  background-color: #363740 !important;
+  border: 1px solid #363740 !important;
+}
+.researches-rating-in {
+  color: white !important;
+  opacity: 1 !important;
+  transform: rotateX(0deg) !important;
+  border-radius: 100%;
+  border: 2px #363740 solid;
+  height: 6rem;
+  width: 6rem;
+  font-size: 4rem !important;
+  font-weight: bolder;
+  background: #363740;
+}
+.researches-smiles {
+  height: 7rem;
+  width: 7rem;
+}
+.report-smiles {
+  height: 4rem;
+  width: 4rem;
+}
+.smiles-lado {
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+}
+.editListItems-tab {
+  cursor: pointer;
+}
+
+.editListItems-tab :hover {
+  transition: 0.2s;
+}
+
+.editListItems-active-tab {
+  border-bottom: 2px solid black;
+  background-color: white;
+  cursor: pointer;
+}
+.researches-icon-alert {
+  font-size: 4.6rem;
+}
+.researches-flutuant-menu {
+  height: 21.5rem;
+  width: 3.3rem;
+  border: 2px solid;
+  position: fixed;
+  left: 93.5%;
+  top: 32%;
+}
+.researches-menu-icon {
+  font-size: 3rem;
+}
+.research-button-addquestion {
+  background-color: #363740 !important;
+  border: none !important;
+}
+.realod-button {
+  cursor: pointer;
+  font-size: 2rem;
+}
+.icon-alert {
+  font-size: 1.6rem;
+}
+.icon-check {
+  font-size: 1.6rem;
+  color: green;
 }

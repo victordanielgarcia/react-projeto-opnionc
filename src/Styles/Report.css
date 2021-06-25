@@ -17,3 +17,42 @@
   overflow-x: hidden;
   overflow-y: hidden;
 }
+.user-image {
+  color: black !important;
+  font-size: 2rem !important;
+  height: 5.5rem !important;
+  width: 5rem !important;
+}
+.report-select {
+  width: 400px !important;
+}
+.report-open-answers {
+  width: 100%;
+  background-color: rgb(231, 229, 229);
+  border: 3px solid #ccc;
+}
+.report-icon-arrow {
+  font-size: 2rem;
+}
+.background-researches {
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}
+.background-researches-smile {
+  height: 500px;
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}
+.background-researches-grap {
+  height: 600px;
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+}
+.background-researches-grap2 {
+  height: 600px;
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}

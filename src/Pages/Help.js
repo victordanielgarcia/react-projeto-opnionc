@@ -19,14 +19,15 @@ function Help() {
 
   useEffect(() => {
     setCurrentPage("Ajuda");
-  }, [setCurrentPage]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="p-p-3 ">
       <ConfirmDialog
         visible={visible}
         onHide={() => setVisible(false)}
-        message="Você será redirecionado para outro dominio."
+        message="Você será redirecionado para outro domínio."
         header="Confirmação"
         rejectLabel="Voltar"
         rejectClassName="default-dialog-reject"
@@ -68,7 +69,7 @@ function Help() {
               <p className="p-mb-2 p-pl-1">Passo 2:</p>
               <p className="p-my-auto p-pl-1">
                 Verifique se a sua conexão com a internet está normal, abra uma
-                outra página por exemplo o Youtube. Por esse
+                outra página como por exemplo o Youtube. Por esse
                 <span
                   aria-hidden="true"
                   className="link"

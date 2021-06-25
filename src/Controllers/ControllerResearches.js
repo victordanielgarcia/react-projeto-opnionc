@@ -31,7 +31,7 @@ async function editResearches(data, id) {
     if (!dataDBExists) {
       return [];
     } else {
-      await response.doc(id).set(data);
+      await response.doc(id).update(data);
 
       return true;
     }
@@ -40,7 +40,7 @@ async function editResearches(data, id) {
   }
 }
 
-async function deleteResearches(name, id) {
+async function deleteResearches(id) {
   try {
     await response.doc(id).delete();
 

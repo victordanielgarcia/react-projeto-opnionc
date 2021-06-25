@@ -1,32 +1,43 @@
-import React, { useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 
-import { AuthContext } from "../Configs/ContextProvider";
+import { scroller } from "react-scroll";
+
+import Navegation from "../Components/SinglePage/Navegation";
+import Plans from "../Components/SinglePage/Plans";
+import Gallery from "../Components/SinglePage/Gallery";
+import Footer from "../Components/SinglePage/Footer";
+import About from "../Components/SinglePage/About";
+import Header from "../Components/SinglePage/Header";
+import Contact from "../Components/SinglePage/Contact";
 
 import "../Styles/SinglePage.css";
+import { AuthContext } from "../Configs/ContextProvider";
 
 function SinglePage() {
-  const { currentUser } = useContext(AuthContext);
+  const { setCurrentPage } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/dashboard" />;
-  }
+  useEffect(() => {
+    setCurrentPage("Disabled");
+    // eslint-disable-next-line
+  }, []);
+
+  const scrollToSection = (item) => {
+    scroller.scrollTo(item, {
+      duration: 1000,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
 
   return (
     <>
-      <div className="p-d-flex p-ai-center p-jc-between single-header-background">
-        <span className="p-ml-5 single-opinionc">OPINIONC</span>
-        <div className="p-mr-5 p-d-flex p-ai-center p-jc-center single-acess-background">
-          <span>
-            <Link to="/entrar" className="single-header-link">
-              Acesso do Cliente
-            </Link>
-          </span>
-        </div>
-      </div>
-      <div>
-        <div className="single-image" />
-      </div>
+      <Navegation scrollToSection={scrollToSection} />
+      <Header />
+      <Plans />
+      <About />
+      <Gallery />
+      <Contact />
+      <Footer scrollToSection={scrollToSection} />
     </>
   );
 }

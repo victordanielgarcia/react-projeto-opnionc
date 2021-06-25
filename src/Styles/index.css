@@ -10,7 +10,14 @@ body {
 
 .spinner {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-form {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +28,19 @@ body {
   width: 100%;
   overflow: auto !important;
   background-color: white;
+}
+
+.default-container1 {
+  min-height: calc(-7.4rem + 100vh);
+  width: 100%;
+  overflow: hidden !important;
+  background-color: white;
+}
+
+.default-container-dashboard {
+  min-height: calc(-7.4rem + 100vh);
+  width: 100%;
+  overflow: auto !important;
 }
 
 .default-dialog-confirm {
@@ -34,6 +54,10 @@ body {
 }
 .link {
   cursor: pointer;
+}
+
+.width100 {
+  width: 100%;
 }
 
 table {
@@ -115,4 +139,14 @@ table th {
   table td:last-child {
     border-bottom: 0;
   }
+}
+.search-input {
+  width: 300px !important;
+}
+.icon-star {
+  font-size: 3rem;
+  color: #363740;
+}
+.cursor {
+  cursor: pointer;
 }

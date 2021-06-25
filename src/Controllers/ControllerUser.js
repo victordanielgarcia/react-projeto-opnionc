@@ -39,22 +39,13 @@ async function getAllUsers(id) {
   }
 }
 
-async function deleteUser(name, id) {
-  try {
-    await response.doc(id).delete();
-    return true;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 async function editUser(data, id) {
   try {
     const dataDBExists = await response.doc(id).get();
     if (!dataDBExists) {
       return [];
     } else {
-      await response.doc(id).set(data);
+      await response.doc(id).update(data);
       return true;
     }
   } catch (err) {
@@ -62,4 +53,4 @@ async function editUser(data, id) {
   }
 }
 
-export { searchCurrentUser, addUser, getAllUsers, editUser, deleteUser };
+export { searchCurrentUser, addUser, getAllUsers, editUser };

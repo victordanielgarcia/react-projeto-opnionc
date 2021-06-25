@@ -1,0 +1,84 @@
+.dashboard-box-welcome {
+  background-color: white;
+  color: #363740;
+  height: 10rem;
+}
+.dashboard-display {
+  min-height: calc(-9rem + 100vh);
+  width: 100%;
+  overflow: auto;
+}
+
+.dashboard-box-welcome {
+  background-color: white;
+  color: #363740;
+  height: 10rem;
+}
+
+.dashboard-box-stats {
+  background-color: white;
+  color: #363740;
+  height: 6rem;
+}
+
+.dashboard-box-stats-icon {
+  background-color: #363740;
+  color: white;
+  font-size: 3rem;
+  width: 50%;
+  height: 100%;
+}
+
+.dashboard-box-stats-icon-width {
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
+
+.dashboard-box-stats-content {
+  font-size: 2rem;
+  color: #363740;
+  width: 50%;
+  height: 100%;
+}
+
+.dashboard-box-stats-muted {
+  font-size: 1rem;
+  color: #363740;
+}
+
+.dashboard-box-graphics {
+  background-color: white;
+  color: #363740;
+  height: 22.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.dashboard-box-order {
+  height: 14.3%;
+}
+
+.dashboard-box-order-status {
+  background-color: white;
+  color: #363740;
+  height: 100%;
+}
+.dashboard-box-order-numbers {
+  background-color: #363740;
+  color: white;
+  border: 1px solid white;
+  height: 100%;
+}
+
+.dashboard-box-charts {
+  height: 20rem;
+  width: 100%;
+  min-width: 40rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.dashboard-background-answers {
+  background-color: #363740;
+  width: 100%;
+  color: white;
+}

@@ -1,204 +1,135 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button } from "primereact/button";
-import { Calendar } from "primereact/calendar";
-import { addLocale } from "primereact/api";
-import { Dropdown } from "primereact/dropdown";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+
+import { toast } from "react-toastify";
+
 import moment from "moment";
 import "moment/locale/pt-br";
 
 import { AuthContext } from "../Configs/ContextProvider";
+import { getAllResearches } from "../Controllers/ControllerResearches";
+
+import Header from "../Components/Reports/Header";
+import SearchForm from "../Components/Reports/SearchForm";
 
 import "../Styles/Report.css";
-import BarChart from "../Components/Reports/barChart";
-import LineChart from "../Components/Reports/lineChart";
+import ViewReport from "../Components/Reports/ViewReport";
+import ViewAnswersModal from "../Components/Reports/ViewAnswersModal";
 
 function Reports() {
-  const { setCurrentPage } = useContext(AuthContext);
+  const { setCurrentPage, researchesList, setResearchesList, userData } =
+    useContext(AuthContext);
 
   const [startDate, setStartDate] = useState(
     new Date(moment().subtract(7, "d").format()),
   );
-  const [endDate, setEndDate] = useState(new Date(moment().format()));
-
+  // eslint-disable-next-line
   const [searchStartDate, setSearchStartDate] = useState(
     new Date(moment().subtract(7, "d").format()),
   );
+  // eslint-disable-next-line
   const [searchEndDate, setSearchEndDate] = useState(
     new Date(moment().format()),
   );
 
-  const [votesTotal, setVotesTotal] = useState(0);
   const [searchActive, setSearchActive] = useState(false);
 
-  const [reportType, setReportType] = useState({ name: "", code: "" });
-  const reportOptions = [
-    { name: "Todos", code: "all" },
-    { name: "Teste 1", code: "teste1" },
-    { name: "Teste 2", code: "teste2" },
-  ];
+  const [endDate, setEndDate] = useState(new Date(moment().format()));
+  const [createdForm, setCreatedForm] = useState([]);
+
+  const [reportOptions, setReportOption] = useState([{ name: "", code: "" }]);
+
+  const [reportType, setReportType] = useState({
+    name: "",
+    code: "",
+  });
+
+  const [showViewAnswersModal, setShowViewAnswersModal] = useState({
+    show: false,
+    id: "",
+    type: "",
+  });
+
+  const handleForm = useMemo(() => {
+    const formList = researchesList.map((item) => {
+      if (item.key_user === userData.id && item.createdForm) {
+        return { name: item.title, code: item.id };
+      }
+      return null;
+    });
+    return formList.filter((userList) => userList !== null);
+  }, [researchesList, userData.id]);
+
+  async function getDataResearches() {
+    const dataResponse = await getAllResearches();
+    if (dataResponse) {
+      setResearchesList(dataResponse);
+      return dataResponse;
+    }
+    return false;
+  }
+
+  async function handleGetForm(value) {
+    const response = await getDataResearches();
+    if (response) {
+      const [newData] = response.filter((item) => item.id === value);
+
+      if (newData && newData.createdForm) {
+        setCreatedForm(newData.createdForm);
+      }
+    }
+  }
+
+  function handleEditDropdown(code, value) {
+    setReportType(value);
+    handleGetForm(code);
+  }
 
   function searchReport() {
     setSearchStartDate(startDate);
     setSearchEndDate(endDate);
+    if (reportType.code === "") {
+      toast.error("Voce deve selecionar um formulário antes de consultar!");
+    }
     if (reportType.code !== "") {
       setSearchActive(true);
     }
   }
 
-  addLocale("pt", {
-    closeText: "Fechar",
-    prevText: "Anterior",
-    nextText: "Próximo",
-    currentText: "Começo",
-    monthNames: [
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
-    ],
-    monthNamesShort: [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-    ],
-    dayNames: [
-      "Domingo",
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-    ],
-    dayNamesShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-    dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
-    weekHeader: "Semana",
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: "",
-    timeOnlyTitle: "Só Horas",
-    timeText: "Tempo",
-    hourText: "Hora",
-    minuteText: "Minuto",
-    secondText: "Segundo",
-    ampm: false,
-    month: "Mês",
-    week: "Semana",
-    day: "Dia",
-    allDayText: "Todo Dia",
-    today: "Hoje",
-    clear: "Limpar",
-  });
-
   useEffect(() => {
     setCurrentPage("Relatórios");
-  }, [setCurrentPage]);
+    setReportOption([...handleForm]);
+    // eslint-disable-next-line
+  }, [handleForm]);
+
+  useEffect(() => {
+    handleGetForm();
+    //eslint-disable-next-line
+  }, []);
 
   return (
-    <div className="p-p-3 ">
-      <div className="p-p-3 p-ai-center p-jc-center default-container">
-        <div className="p-d-flex p-grid p-mb-3 calendar-select">
-          <div className="p-field p-col-12 p-md-2 p-as-center p-m-0 p-justify-center p-d-flex">
-            <label className="p-as-center p-text-center p-mb-0">
-              Período Inicial&emsp;
-            </label>
-          </div>
-          <div className="p-field p-col-12 p-md-3 p-as-center p-m-0 p-justify-center p-d-flex">
-            <Calendar
-              className="calendar-button"
-              showIcon
-              locale="pt"
-              dateFormat="dd/mm/yy"
-              value={startDate}
-              onChange={(e) => setStartDate(new Date(e.target.value))}
-            />
-          </div>
-          <div className="p-field p-col-12 p-md-2 p-as-center p-m-0 p-justify-center p-d-flex">
-            <label className="p-as-center p-text-center p-mb-0">
-              Período Final&emsp;
-            </label>
-          </div>
-          <div className="p-field p-col-12 p-md-3 p-as-center p-m-0 p-justify-center p-d-flex">
-            <Calendar
-              className="calendar-button"
-              locale="pt"
-              showIcon
-              dateFormat="dd/mm/yy"
-              value={endDate}
-              onChange={(e) => setEndDate(new Date(e.target.value))}
-            />
-          </div>
-          <div className="p-field p-col-12 p-md-2 p-as-center p-m-0 p-justify-center p-d-flex">
-            <Button className="login-button" onClick={() => searchReport()}>
-              Consultar
-            </Button>
-          </div>
-        </div>
-
-        <div className="p-d-flex p-jc-center">
-          <Dropdown
-            optionLabel="name"
-            value={reportType}
-            options={reportOptions}
-            className="p-col-6 p-justify-center p-p-0 p-m-0"
-            onChange={(e) => setReportType(e.value)}
-            placeholder="Selecione um Tipo"
-          />
-        </div>
-        {reportType.code !== "" && searchActive && (
-          <div className="p-grid">
-            <div className="graphics-reports p-col-12 p-md-12">
-              <p className="p-p-0 p-m-0">
-                <b>Quantidade de Votos por Avaliação</b>
-                <br />
-                {votesTotal}
-                <small>
-                  <br />
-                  {`No Período: ${moment(searchStartDate).format(
-                    "DD/MM/YYYY",
-                  )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
-                </small>
-              </p>
-              <BarChart votesTotal={votesTotal} />
-            </div>
-            <div className="graphics-reports p-col-12 p-md-12">
-              <p className="p-p-0 p-m-0">
-                <b>Votos por Dia</b>
-                <br />
-                {votesTotal}
-                <small>
-                  <br />
-                  {`No Período: ${moment(searchStartDate).format(
-                    "DD/MM/YYYY",
-                  )} até ${moment(searchEndDate).format("DD/MM/YYYY")}`}
-                </small>
-              </p>
-              <LineChart
-                searchStartDate={searchStartDate}
-                searchEndDate={searchEndDate}
-                setVotesTotal={setVotesTotal}
-              />
-            </div>
-          </div>
-        )}
+    <div className="p-p-3">
+      <ViewAnswersModal
+        showViewAnswersModal={showViewAnswersModal}
+        setShowViewAnswersModal={setShowViewAnswersModal}
+      />
+      <div className="p-p-3 default-container-dashboard ">
+        <Header userData={userData} />
+        <SearchForm
+          endDate={endDate}
+          setEndDate={setEndDate}
+          handleEditDropdown={handleEditDropdown}
+          reportOptions={reportOptions}
+          reportType={reportType}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          searchReport={searchReport}
+        />
+        <ViewReport
+          searchActive={searchActive}
+          reportType={reportType}
+          createdForm={createdForm}
+          setShowViewAnswersModal={setShowViewAnswersModal}
+        />
       </div>
     </div>
   );

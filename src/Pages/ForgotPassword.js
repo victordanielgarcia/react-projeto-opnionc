@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import React from "react";
+import React, { useState } from "react";
 import { FaHome, FaKey, FaUserCircle } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { Link } from "react-router-dom";
@@ -9,23 +9,16 @@ import emailjs from "emailjs-com";
 import "../Styles/ForgotPassword.css";
 
 function Pages() {
+  const [sended, setSended] = useState(true);
   function sendEmail(e) {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_qo63alm",
-        "template_5awy3lu",
-        e.target,
-        "user_bynkexbAzxrwLiNoexCMm",
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        },
-      );
+    emailjs.sendForm(
+      "service_qo63alm",
+      "template_5awy3lu",
+      e.target,
+      "user_bynkexbAzxrwLiNoexCMm",
+    );
+    setSended(false);
   }
 
   return (
@@ -53,44 +46,77 @@ function Pages() {
           </span>
         </span>
       </div>
-      <form onSubmit={sendEmail}>
-        <div className="p-d-flex p-ai-center p-jc-center login-container">
-          <div className="p-d-flex p-flex-column login-container-white">
-            <div>
-              <VscAccount className="forgot-icon" />
+      {sended ? (
+        <>
+          <form onSubmit={sendEmail}>
+            <div className="p-d-flex p-ai-center p-jc-center login-container">
+              <div className="p-d-flex p-flex-column login-container-white">
+                <div>
+                  <VscAccount className="forgot-icon" />
+                </div>
+                <div className="p-mb-2 p-d-flex p-ai-center p-jc-center">
+                  <span className="p-my-2 forgot-header">
+                    Problemas para entrar?
+                  </span>
+                </div>
+                <div className="p-mb-4 p-d-flex p-ai-center p-jc-center p-mx-5">
+                  <span className="p-text-center">
+                    Insira o seu e-mail e enviaremos um link para voce voltar a
+                    ter acesso a sua conta.
+                  </span>
+                </div>
+                <div className="p-d-flex p-flex-column p-ai-center p-jc-center">
+                  <span className="p-my-2 p-input-icon-left">
+                    <i className="pi pi-envelope" />
+                    <InputText
+                      placeholder="E-mail"
+                      className="login-input"
+                      type="email"
+                      name="user_email"
+                    />
+                  </span>
+                  <Button
+                    type="submit"
+                    className="p-d-flex p-mx-auto p-mt-3 p-px-6 p-py-2 login-button"
+                    label="Enviar"
+                    icon="pi pi-sign-in"
+                    iconPos="right"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="p-mb-2 p-d-flex p-ai-center p-jc-center">
-              <span className="p-my-2 forgot-header">
-                Problemas para entrar?
-              </span>
+          </form>
+        </>
+      ) : (
+        <>
+          <form onSubmit={sendEmail}>
+            <div className="p-d-flex p-ai-center p-jc-center login-container">
+              <div className="p-d-flex p-flex-column login-container-white-password">
+                <div className="p-mb-2 p-d-flex p-ai-center p-jc-center">
+                  <span className="p-my-2 forgot-header">
+                    E-mail enviado com sucesso!
+                  </span>
+                </div>
+                <div className="p-mb-4 p-d-flex p-ai-center p-jc-center p-mx-5">
+                  <span className="p-text-center">
+                    O e-mail pode levar até 15 minutos para aparecer, verifique
+                    também a caixa de spam do seu e-mail
+                  </span>
+                </div>
+                <div className="p-d-flex p-flex-column p-ai-center p-jc-center">
+                  <Link to="/entrar" className="login-header-link">
+                    <Button
+                      className="p-d-flex p-mx-auto p-mt-3 p-px-6 p-py-2 login-button"
+                      label="Voltar ao Login"
+                      iconPos="right"
+                    />
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="p-mb-4 p-d-flex p-ai-center p-jc-center p-mx-5">
-              <span className="p-text-center">
-                Insira o seu e-mail e enviaremos um link para voce voltar a ter
-                acesso a sua conta.
-              </span>
-            </div>
-            <div className="p-d-flex p-flex-column p-ai-center p-jc-center">
-              <span className="p-my-2 p-input-icon-left">
-                <i className="pi pi-envelope" />
-                <InputText
-                  placeholder="E-mail"
-                  className="login-input"
-                  type="email"
-                  name="user_email"
-                />
-              </span>
-              <Button
-                type="submit"
-                className="p-d-flex p-mx-auto p-mt-3 p-px-6 p-py-2 login-button"
-                label="Enviar"
-                icon="pi pi-sign-in"
-                iconPos="right"
-              />
-            </div>
-          </div>
-        </div>
-      </form>
+          </form>
+        </>
+      )}
     </div>
   );
 }

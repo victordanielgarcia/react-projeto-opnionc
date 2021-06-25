@@ -7,6 +7,18 @@
   position: sticky;
   float: left;
   z-index: 1;
+  transition: 150ms;
+}
+.navegation-background-closed {
+  height: 100vh;
+  width: 3.5rem;
+  background: #363740;
+  right: 0;
+  top: 0;
+  position: sticky;
+  float: left;
+  z-index: 1;
+  transition: 150ms;
 }
 .navegation-avatar {
   color: #1e1f29;
@@ -14,6 +26,15 @@
   width: 5rem !important;
   font-size: 3rem !important;
   border-radius: 40% !important;
+  transition: 150ms;
+}
+.navegation-avatar-closed {
+  color: #1e1f29;
+  height: 2.5rem !important;
+  width: 2.5rem !important;
+  font-size: 1.5rem !important;
+  border-radius: 40% !important;
+  transition: 150ms;
 }
 .navegation-username {
   color: #a4a6b3;
@@ -23,6 +44,7 @@
   height: 3rem;
   width: 13rem;
   text-decoration: none !important;
+  transition: 150ms;
 }
 
 .navegation-background-item-selected {
@@ -30,6 +52,21 @@
   width: 13rem;
   text-decoration: none !important;
   background: #3f4049;
+  transition: 150ms;
+}
+.navegation-background-item-closed {
+  height: 3rem;
+  width: 3.5rem;
+  text-decoration: none !important;
+  transition: 150ms;
+}
+
+.navegation-background-item-selected-closed {
+  height: 3rem;
+  width: 3.5rem;
+  text-decoration: none !important;
+  background: #3f4049;
+  transition: 150ms;
 }
 .navegation-icon-item {
   font-size: 1.2rem;

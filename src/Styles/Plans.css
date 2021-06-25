@@ -1,0 +1,33 @@
+.plans-button {
+  background-color: #363740 !important;
+  border: none !important;
+  border-color: none !important;
+  color: white !important;
+}
+.plans-check:checked {
+  background-color: #363740 !important;
+  border: none !important;
+  border-color: none !important;
+  color: white !important;
+}
+.plans-check:focus {
+  box-shadow: 0 0 0 0.05rem #363740 !important;
+}
+.plans-text {
+  color: #363740 !important;
+}
+.devImg {
+  width: 30%;
+  height: 30%;
+}
+.imgcredits {
+  border-radius: 100px !important;
+}
+.header-credits {
+  background-color: #363740;
+  color: white;
+}
+.document {
+  color: #a4a6b3;
+  cursor: pointer;
+}

@@ -26,6 +26,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.login-container-white-password {
+  height: 20rem;
+  width: 25rem;
+  background: #f4f4f4 !important;
+  border-radius: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .login-button {
   background: #363740 !important;
   border: none !important;
@@ -41,6 +51,17 @@
 }
 .login-input {
   width: 18rem;
+  border: 0 !important;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
+  transition: box-shadow 0.15s ease !important;
+}
+
+.login-input-pass {
+  width: 14.2rem;
+  height: 2.8rem;
+}
+.login-input-pass {
+  width: 14.2rem;
   border: 0 !important;
   box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
   transition: box-shadow 0.15s ease !important;

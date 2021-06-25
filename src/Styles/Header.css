@@ -4,6 +4,7 @@
   position: sticky;
   top: 0;
   color: #2f2f33;
+  z-index: 3;
 }
 .header-button-closed {
   font-size: 2rem;
@@ -257,4 +258,79 @@
   100% {
     transform: rotate(0);
   }
+}
+.background-holder {
+  height: 8rem;
+}
+.background-holder :hover {
+  background-color: #67676b;
+}
+.background-popout-body {
+  min-height: 3vh;
+  width: 100%;
+  cursor: pointer;
+}
+.background-popout {
+  position: absolute;
+  max-height: 55vh;
+  width: 23%;
+  background: #363740;
+  top: 7%;
+  left: 76%;
+  overflow: auto;
+  z-index: 4;
+}
+.background-popout-header {
+  height: 8vh;
+  width: 100%;
+}
+
+.popout-titulo {
+  width: 85%;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  float: left;
+}
+
+.popout-text {
+  font-size: 4vh;
+  margin-left: 2vh;
+  color: white;
+}
+
+.background-popout-icon {
+  height: 8vh;
+  width: 15%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-closed {
+  color: white;
+  font-size: 5vh;
+  cursor: pointer;
+}
+
+.background-popout-body {
+  min-height: 3vh;
+  width: 100%;
+  cursor: pointer;
+}
+.popout-description {
+  min-height: 3vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.teste {
+  word-wrap: break-word;
+  width: 95%;
+  min-height: 3vh;
+  margin: 0;
+  text-align: justify;
+  color: white;
+  font-size: 2.2vh;
 }
