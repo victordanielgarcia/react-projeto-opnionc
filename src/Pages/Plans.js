@@ -1,49 +1,54 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Configs/ContextProvider";
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../Configs/ContextProvider'
 
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar } from 'react-icons/ai'
 
-import "../Styles/Plans.css";
-import { editUser, getAllUsers } from "../Controllers/ControllerUser";
-import { toast } from "react-toastify";
+import '../Styles/Plans.css'
+import {
+  editUser,
+  getAllUsers,
+  searchCurrentUser,
+} from '../Controllers/ControllerUser'
+import { toast } from 'react-toastify'
 
-import { ProgressSpinner } from "primereact/progressspinner";
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 function Plans() {
-  const { setCurrentPage, userData } = useContext(AuthContext);
+  const { setCurrentPage, userData, setUserData } = useContext(AuthContext)
 
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(false)
 
-  const [actualPage, setActualPage] = useState(1);
+  const [actualPage, setActualPage] = useState(1)
 
   async function handleEditUser() {
-    setPending(true);
+    setPending(true)
     const data = {
-      plan: "Pro",
-      Vencimento: "25/07/2021",
-    };
-    const response = await editUser(data, userData.id);
+      plan: 'Pro',
+      Vencimento: '25/07/2021',
+    }
+    const response = await editUser(data, userData.id)
     if (response) {
-      setTimeout(() => {
-        getAllUsers();
-        setPending(false);
-        setActualPage(1);
+      setTimeout(async () => {
+        const response = await searchCurrentUser(userData.id)
+        if (response) setUserData(response)
+        setPending(false)
+        setActualPage(1)
         toast.success(
-          "Compra concluída com sucesso, Obrigado por nos escolher!",
-        );
-      }, 3000);
+          'Compra concluída com sucesso, Obrigado por nos escolher!',
+        )
+      }, 3000)
     } else {
       setTimeout(() => {
-        setPending(false);
-        toast.error("Não foi possível ler os dados.");
-      }, 2000);
+        setPending(false)
+        toast.error('Não foi possível ler os dados.')
+      }, 2000)
     }
   }
 
   useEffect(() => {
-    setCurrentPage("Planos");
+    setCurrentPage('Planos')
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   return (
     <div className="p-p-3">
@@ -51,7 +56,7 @@ function Plans() {
         {pending ? (
           <div
             className="p-d-flex p-as-center p-jc-center"
-            style={{ height: "500px" }}
+            style={{ height: '500px' }}
           >
             <div className="spinner-form">
               <ProgressSpinner />
@@ -101,7 +106,7 @@ function Plans() {
                                       </span>
                                     </li>
                                   </ul>
-                                  {userData.plan === "free" ? (
+                                  {userData.plan === 'free' ? (
                                     <>
                                       <div class="btn btn-custom">
                                         <AiFillStar className="icon-star" />
@@ -144,10 +149,10 @@ function Plans() {
                                     </li>
                                   </ul>
 
-                                  {userData.plan === "free" ? (
+                                  {userData.plan === 'free' ? (
                                     <div
                                       onClick={() => {
-                                        setActualPage(2);
+                                        setActualPage(2)
                                       }}
                                       class="btn btn-custom"
                                     >
@@ -176,7 +181,7 @@ function Plans() {
               </>
             ) : (
               <>
-                {" "}
+                {' '}
                 <div class="row">
                   <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -343,7 +348,7 @@ function Plans() {
                         class="w-100 btn btn-primary btn-lg plans-button"
                         type="button"
                         onClick={() => {
-                          handleEditUser();
+                          handleEditUser()
                         }}
                       >
                         Concluir Compra
@@ -357,7 +362,7 @@ function Plans() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Plans;
+export default Plans

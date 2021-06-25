@@ -53,8 +53,8 @@ function SelectedResearches(props) {
 
   const [formSelected, setFormSelected] = useState([]);
 
-  const [color1, setColor1] = useState();
-  const [color2, setColor2] = useState();
+  const [color1, setColor1] = useState("#f4f4f4");
+  const [color2, setColor2] = useState("363740");
 
   const [showAddEmailModal, setShowAddEmailModal] = useState(false);
   const [showViewAnswersModal, setShowViewAnswersModal] = useState({
@@ -158,7 +158,6 @@ function SelectedResearches(props) {
     if (response) {
       toast.success("Seu Formulário foi Publicado com Sucesso!");
       setPending(true);
-      getDataResearches();
     } else {
       setPending(true);
       toast.error("Algo deu Errado!");
@@ -187,6 +186,7 @@ function SelectedResearches(props) {
     if (newData2.emailList) {
       setEmailList(newData2.emailList);
     }
+    // eslint-disable-next-line
   }, [researchesList, selectedResearches]);
 
   useEffect(() => {
@@ -950,7 +950,7 @@ function SelectedResearches(props) {
                                   if (item === answer.email) {
                                     return answer.date;
                                   }
-                                  return null;
+                                  return "Sem resposta";
                                 })}
                               </td>
                               <td data-label="E-mail">{item}</td>
@@ -971,8 +971,23 @@ function SelectedResearches(props) {
                                         }
                                       />
                                     );
+                                  } else {
+                                    return (
+                                      <Button
+                                        type="submit"
+                                        disabled
+                                        className="p-mx-2 researches-button"
+                                        label="Visualizar"
+                                        iconPos="right"
+                                        onClick={() =>
+                                          setShowViewAnswersModal({
+                                            show: true,
+                                            formAnswers: answer,
+                                          })
+                                        }
+                                      />
+                                    );
                                   }
-                                  return null;
                                 })}
 
                                 <Button
