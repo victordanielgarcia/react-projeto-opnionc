@@ -1,43 +1,47 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react'
 
-import { Button } from "primereact/button";
+import { Button } from 'primereact/button'
 
-import { TiArrowSortedDown } from "react-icons/ti";
+import { TiArrowSortedDown } from 'react-icons/ti'
 
-import MapChart from "./MapChart1";
-import ChartBar from "./ChartBar";
+import MapChart from './MapChart1'
+import ChartBar from './ChartBar'
 
-import ChartPieSelectBox from "./ChartPieSelectBox";
-import ChartPieMultipleChoice from "./ChartPieMultipleChoice";
-import ChartPieStars from "./ChartPieStars";
-import ChartPieSmiles from "./ChartPieSmiles";
-import ChartPieNumber from "./ChartPieNumber";
+import ChartPieSelectBox from './ChartPieSelectBox'
+import ChartPieMultipleChoice from './ChartPieMultipleChoice'
+import ChartPieStars from './ChartPieStars'
+import ChartPieSmiles from './ChartPieSmiles'
+import ChartPieNumber from './ChartPieNumber'
 
-import { AuthContext } from "../../Configs/ContextProvider";
-import { getAllFormAnswers } from "../../Controllers/ControllerFormAnswers";
+import { AuthContext } from '../../Configs/ContextProvider'
+import { getAllFormAnswers } from '../../Controllers/ControllerFormAnswers'
 
 function ViewReport(props) {
-  const { reportType, createdForm, setShowViewAnswersModal, searchActive } =
-    props;
+  const {
+    reportType,
+    createdForm,
+    setShowViewAnswersModal,
+    searchActive,
+  } = props
 
-  const { setFormAnswersList, formAnswersList } = useContext(AuthContext);
+  const { setFormAnswersList, formAnswersList } = useContext(AuthContext)
 
   async function getDataFormAnswers() {
-    const dataResponse = await getAllFormAnswers();
+    const dataResponse = await getAllFormAnswers()
     if (dataResponse) {
-      setFormAnswersList(dataResponse);
+      setFormAnswersList(dataResponse)
     }
   }
 
   useEffect(() => {
-    getDataFormAnswers();
+    getDataFormAnswers()
 
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   return (
     <div>
-      {reportType.code !== "" && searchActive && createdForm && (
+      {reportType.code !== '' && searchActive && createdForm && (
         <>
           <div className="p-py-4 p-ai-center p-jc-center default-container1">
             <div className="p-px-5">
@@ -54,7 +58,7 @@ function ViewReport(props) {
             </div>
             <div className="p-py-3 p-mx-5 background-researches">
               {createdForm.map((item, index) => {
-                if (item.type === "shortAnswer") {
+                if (item.type === 'shortAnswer') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -74,7 +78,7 @@ function ViewReport(props) {
                               setShowViewAnswersModal({
                                 show: true,
                                 id: reportType.code,
-                                type: "shortAnswer",
+                                type: 'shortAnswer',
                                 title: item.title,
                               })
                             }
@@ -82,9 +86,9 @@ function ViewReport(props) {
                         </div>
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "paragraph") {
+                if (item.type === 'paragraph') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2 ">
                       <div className="p-p-2 report-open-answers">
@@ -104,7 +108,7 @@ function ViewReport(props) {
                               setShowViewAnswersModal({
                                 show: true,
                                 id: reportType.code,
-                                type: "paragraph",
+                                type: 'paragraph',
                                 title: item.title,
                               })
                             }
@@ -112,9 +116,9 @@ function ViewReport(props) {
                         </div>
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "selectionBox") {
+                if (item.type === 'selectionBox') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -128,12 +132,15 @@ function ViewReport(props) {
                         </div>
                       </div>
                       <div className="p-p-2 background-researches-smile">
-                        <ChartPieSelectBox />
+                        <ChartPieSelectBox
+                          formAnswersList={formAnswersList}
+                          reportType={reportType}
+                        />
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "multipleChoice") {
+                if (item.type === 'multipleChoice') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -147,12 +154,15 @@ function ViewReport(props) {
                         </div>
                       </div>
                       <div className="p-p-2 background-researches-smile">
-                        <ChartPieMultipleChoice />
+                        <ChartPieMultipleChoice
+                          formAnswersList={formAnswersList}
+                          reportType={reportType}
+                        />
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "avaliationStars") {
+                if (item.type === 'avaliationStars') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -172,9 +182,9 @@ function ViewReport(props) {
                         />
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "avaliationNumber") {
+                if (item.type === 'avaliationNumber') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -194,9 +204,9 @@ function ViewReport(props) {
                         />
                       </div>
                     </div>
-                  );
+                  )
                 }
-                if (item.type === "avaliationSmiles") {
+                if (item.type === 'avaliationSmiles') {
                   return (
                     <div className="p-mx-5 p-mb-4 p-mb-2">
                       <div className="p-p-2 report-open-answers">
@@ -214,9 +224,9 @@ function ViewReport(props) {
                         reportType={reportType}
                       />
                     </div>
-                  );
+                  )
                 }
-                return null;
+                return null
               })}
             </div>
             <div className="p-mx-5 p-my-5 p-mb-2">
@@ -233,7 +243,10 @@ function ViewReport(props) {
 
               <div className="p-p-2 p-text-center background-researches-grap">
                 <h5 className="p-py-3">Quantidade de Respostas por Dia</h5>
-                <ChartBar />
+                <ChartBar
+                  formAnswersList={formAnswersList}
+                  reportType={reportType}
+                />
               </div>
 
               <div className="p-p-2 background-researches-grap2 p-text-center">
@@ -250,7 +263,7 @@ function ViewReport(props) {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default ViewReport;
+export default ViewReport
