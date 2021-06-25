@@ -1,61 +1,62 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaEye, FaEyeSlash, FaUserCog } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from 'react'
+import { FaEye, FaEyeSlash, FaUserCog } from 'react-icons/fa'
 
-import { Checkbox } from "primereact/checkbox";
-import { InputText } from "primereact/inputtext";
-import { ProgressSpinner } from "primereact/progressspinner";
+import { Checkbox } from 'primereact/checkbox'
+import { InputText } from 'primereact/inputtext'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
-import { AuthContext } from "../Configs/ContextProvider";
+import { AuthContext } from '../Configs/ContextProvider'
 
-import "../Styles/Settings.css";
-import { Button } from "primereact/button";
-import { ConfirmDialog } from "primereact/confirmdialog";
-import { editUser } from "../Controllers/ControllerUser";
-import { toast } from "react-toastify";
+import '../Styles/Settings.css'
+import { Button } from 'primereact/button'
+import { ConfirmDialog } from 'primereact/confirmdialog'
+import { editUser, searchCurrentUser } from '../Controllers/ControllerUser'
+import { toast } from 'react-toastify'
 
 function Settings() {
-  const { setCurrentPage, userData } = useContext(AuthContext);
+  const { setCurrentPage, userData, setUserData } = useContext(AuthContext)
 
-  const [seePass, setSeePass] = useState(false);
-  const [changePassword, setChangePassword] = useState(false);
+  const [seePass, setSeePass] = useState(false)
+  const [changePassword, setChangePassword] = useState(false)
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(false)
 
   async function handleEditUser() {
-    setPending(true);
+    setPending(true)
     const data = {
       name,
       email,
-    };
-    const response = await editUser(data, userData.id);
+    }
+    const response = await editUser(data, userData.id)
     if (response) {
-      setTimeout(() => {
-        setPending(false);
-        setSeePass(false);
-        toast.success("Sua conta foi Editada com Sucesso!");
-      }, 2000);
+      setTimeout(async () => {
+        const response = await searchCurrentUser(userData.id)
+        if (response) setUserData(response)
+        setPending(false)
+        setSeePass(false)
+        toast.success('Sua conta foi Editada com Sucesso!')
+      }, 2000)
     } else {
       setTimeout(() => {
-        setPending(false);
-        toast.error("Não foi possível ler os dados.");
-      }, 2000);
+        setPending(false)
+        toast.error('Não foi possível ler os dados.')
+      }, 2000)
     }
   }
 
   useEffect(() => {
-    setCurrentPage("Configurações");
+    setCurrentPage('Configurações')
     if (userData) {
-      setName(userData.name);
-      setEmail(userData.email);
+      setName(userData.name)
+      setEmail(userData.email)
     }
-
     // eslint-disable-next-line
-  }, []);
+  }, [userData])
 
   return (
     <div className="p-p-3">
@@ -64,7 +65,7 @@ function Settings() {
         onHide={() => setVisible(false)}
         message={
           !changePassword ? (
-            "Você tem certeza que deseja salvar as configurações?"
+            'Você tem certeza que deseja salvar as configurações?'
           ) : (
             <>
               <div className="p-m-0">
@@ -84,14 +85,14 @@ function Settings() {
         acceptClassName="default-dialog-confirm"
         icon="pi pi-save"
         accept={() => {
-          handleEditUser();
+          handleEditUser()
         }}
       />
       <div className="p-p-3 p-text-justify default-container">
         {pending ? (
           <div
             className="p-d-flex p-as-center p-jc-center"
-            style={{ height: "350px" }}
+            style={{ height: '350px' }}
           >
             <div className="spinner-form">
               <ProgressSpinner />
@@ -137,8 +138,8 @@ function Settings() {
                 onChange={() => setChangePassword(!changePassword)}
                 className={
                   changePassword
-                    ? "p-mt-2 settings-checkbox-selected"
-                    : "p-mt-2 settings-checkbox"
+                    ? 'p-mt-2 settings-checkbox-selected'
+                    : 'p-mt-2 settings-checkbox'
                 }
               />
               <p className="p-pl-2 p-mt-2">Alterar Minha Senha</p>
@@ -157,7 +158,7 @@ function Settings() {
                     <Button
                       className="p-p-0 settings-input-on-button"
                       onClick={() => {
-                        setSeePass(!seePass);
+                        setSeePass(!seePass)
                       }}
                     >
                       {seePass ? (
@@ -180,7 +181,7 @@ function Settings() {
                     <Button
                       className="p-p-0 settings-input-on-button"
                       onClick={() => {
-                        setSeePass(!seePass);
+                        setSeePass(!seePass)
                       }}
                     >
                       {seePass ? (
@@ -205,7 +206,7 @@ function Settings() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Settings;
+export default Settings

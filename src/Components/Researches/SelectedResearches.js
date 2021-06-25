@@ -1,33 +1,33 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import { InputText } from "primereact/inputtext";
-import { InputTextarea } from "primereact/inputtextarea";
-import { Button } from "primereact/button";
-import { Menu } from "primereact/menu";
+import { InputText } from 'primereact/inputtext'
+import { InputTextarea } from 'primereact/inputtextarea'
+import { Button } from 'primereact/button'
+import { Menu } from 'primereact/menu'
 
-import { FaTimes } from "react-icons/fa";
-import { GoDiffAdded } from "react-icons/go";
-import { MdCheckBoxOutlineBlank, MdRadioButtonUnchecked } from "react-icons/md";
-import { FiAlertTriangle } from "react-icons/fi";
-import { IoReloadOutline } from "react-icons/io5";
-import { ProgressSpinner } from "primereact/progressspinner";
+import { FaTimes } from 'react-icons/fa'
+import { GoDiffAdded } from 'react-icons/go'
+import { MdCheckBoxOutlineBlank, MdRadioButtonUnchecked } from 'react-icons/md'
+import { FiAlertTriangle } from 'react-icons/fi'
+import { IoReloadOutline } from 'react-icons/io5'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
-import { editResearches } from "../../Controllers/ControllerResearches";
+import { editResearches } from '../../Controllers/ControllerResearches'
 
-import AddEmail from "./AddEmail";
-import ViewAnswers from "./ViewAnswers";
+import AddEmail from './AddEmail'
+import ViewAnswers from './ViewAnswers'
 
-import emailjs from "emailjs-com";
+import emailjs from 'emailjs-com'
 
-import angry from "../../Assets/ANGRY.png";
-import happy from "../../Assets/HAPPY.png";
-import indiferent from "../../Assets/INDIFERENT.png";
-import sad from "../../Assets/SAD.png";
-import veryHappy from "../../Assets/VERY HAPPY.png";
-import { toast } from "react-toastify";
-import { AuthContext } from "../../Configs/ContextProvider";
+import angry from '../../Assets/ANGRY.png'
+import happy from '../../Assets/HAPPY.png'
+import indiferent from '../../Assets/INDIFERENT.png'
+import sad from '../../Assets/SAD.png'
+import veryHappy from '../../Assets/VERY HAPPY.png'
+import { toast } from 'react-toastify'
+import { AuthContext } from '../../Configs/ContextProvider'
 
-import { ColorPicker } from "primereact/colorpicker";
+import { ColorPicker } from 'primereact/colorpicker'
 
 function SelectedResearches(props) {
   const {
@@ -36,41 +36,41 @@ function SelectedResearches(props) {
     researchesList,
     getDataFormAnswers,
     getDataResearches,
-  } = props;
+  } = props
 
-  const { formAnswersList } = useContext(AuthContext);
+  const { formAnswersList } = useContext(AuthContext)
 
-  const [toggleList, setToggleList] = useState(false);
-  const [toggleEmail, setToggleEmail] = useState(true);
+  const [toggleList, setToggleList] = useState(false)
+  const [toggleEmail, setToggleEmail] = useState(true)
 
-  const [emailList, setEmailList] = useState([]);
+  const [emailList, setEmailList] = useState([])
 
-  const [inputSearch, setInputSearch] = useState("");
+  const [inputSearch, setInputSearch] = useState('')
 
-  const [createdForm, setCreatedForm] = useState([]);
+  const [createdForm, setCreatedForm] = useState([])
 
-  const [pending, setPending] = useState([]);
+  const [pending, setPending] = useState([])
 
-  const [formSelected, setFormSelected] = useState([]);
+  const [formSelected, setFormSelected] = useState([])
 
-  const [color1, setColor1] = useState("#f4f4f4");
-  const [color2, setColor2] = useState("363740");
+  const [color1, setColor1] = useState('#f4f4f4')
+  const [color2, setColor2] = useState('363740')
 
-  const [showAddEmailModal, setShowAddEmailModal] = useState(false);
+  const [showAddEmailModal, setShowAddEmailModal] = useState(false)
   const [showViewAnswersModal, setShowViewAnswersModal] = useState({
     show: false,
     formAnswers: [],
-  });
+  })
 
   function copyResearchesLink() {
-    const textArea = document.createElement("textarea");
-    textArea.value = `http://localhost:3000/a/${selectedResearches}`;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("Copy");
-    textArea.remove();
+    const textArea = document.createElement('textarea')
+    textArea.value = `http://localhost:3000/a/${selectedResearches}`
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand('Copy')
+    textArea.remove()
     if (textArea) {
-      toast.success("O link foi copiado para a sua area de transfêrencia!");
+      toast.success('O link foi copiado para a sua area de transfêrencia!')
     }
   }
 
@@ -83,11 +83,11 @@ function SelectedResearches(props) {
             ...item.options,
             { name: `Opção ${item.options.length + 1}`, disabled: false },
           ],
-        };
+        }
       }
-      return item;
-    });
-    setCreatedForm(newCreatedForm);
+      return item
+    })
+    setCreatedForm(newCreatedForm)
   }
 
   function handleEditOption(index, value, indexOption) {
@@ -97,25 +97,25 @@ function SelectedResearches(props) {
           ...item,
           options: item.options.map((item, index) => {
             if (index === indexOption) {
-              return { name: value, disabled: false };
+              return { name: value, disabled: false }
             }
-            return item;
+            return item
           }),
-        };
+        }
       }
-      return item;
-    });
-    setCreatedForm(newCreatedForm);
+      return item
+    })
+    setCreatedForm(newCreatedForm)
   }
 
   function handleEditTitle(index, value) {
     const newCreatedForm = createdForm.map((item) => {
       if (item.index === index) {
-        return { ...item, title: value };
+        return { ...item, title: value }
       }
-      return item;
-    });
-    setCreatedForm(newCreatedForm);
+      return item
+    })
+    setCreatedForm(newCreatedForm)
   }
 
   function handleDeleteOption(item2, indexOption) {
@@ -124,228 +124,228 @@ function SelectedResearches(props) {
         return {
           ...item,
           options: item.options.filter((item, index) => indexOption !== index),
-        };
+        }
       }
-      return item;
-    });
-    setCreatedForm(newCreatedForm);
+      return item
+    })
+    setCreatedForm(newCreatedForm)
   }
 
   function handleDeleteQuestion(index) {
-    const newCreatedForm = createdForm.filter((item) => item.index !== index);
+    const newCreatedForm = createdForm.filter((item) => item.index !== index)
 
-    let count = 0;
+    let count = 0
 
     const newCreatedForm2 = newCreatedForm.map((item) => {
-      const count2 = { ...item, index: count };
-      count++;
+      const count2 = { ...item, index: count }
+      count++
 
-      return count2;
-    });
+      return count2
+    })
 
-    setCreatedForm(newCreatedForm2);
+    setCreatedForm(newCreatedForm2)
   }
 
   async function handleAddForms() {
-    setPending(false);
+    setPending(false)
     const data = {
       createdForm,
       published: true,
-    };
-    const response = await editResearches(data, selectedResearches);
+    }
+    const response = await editResearches(data, selectedResearches)
     if (response) {
-      toast.success("Seu Formulário foi Publicado com Sucesso!");
-      setPending(true);
+      toast.success('Seu Formulário foi Publicado com Sucesso!')
+      setPending(true)
     } else {
-      setPending(true);
-      toast.error("Algo deu Errado!");
+      setPending(true)
+      toast.error('Algo deu Errado!')
     }
   }
 
   useEffect(() => {
-    getDataFormAnswers();
+    getDataFormAnswers()
     const [newData] = researchesList.filter(
       (item) => item.id === selectedResearches,
-    );
+    )
     if (newData.createdForm) {
-      setCreatedForm(newData.createdForm);
+      setCreatedForm(newData.createdForm)
     }
 
     const [newData3] = researchesList.filter(
       (item) => item.id === selectedResearches,
-    );
+    )
     if (newData3) {
-      setFormSelected(newData);
+      setFormSelected(newData)
     }
 
     const [newData2] = researchesList.filter(
       (item) => item.id === selectedResearches,
-    );
+    )
     if (newData2.emailList) {
-      setEmailList(newData2.emailList);
+      setEmailList(newData2.emailList)
     }
     // eslint-disable-next-line
-  }, [researchesList, selectedResearches]);
+  }, [researchesList, selectedResearches])
 
   const newCreatedFormLink = formAnswersList.filter(
     (item) => item.assessment_key === selectedResearches && !item.email,
-  );
+  )
 
   const newCreatedFormEmail = formAnswersList.filter(
     (item) => item.assessment_key === selectedResearches && item.email,
-  );
+  )
 
-  const menu = useRef(null);
+  const menu = useRef(null)
 
   const items = [
     {
-      label: "Perguntas Simples",
+      label: 'Perguntas Simples',
       items: [
         {
-          label: "Resposta Curta",
+          label: 'Resposta Curta',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "shortAnswer",
-                title: "",
-                answer: "",
+                type: 'shortAnswer',
+                title: '',
+                answer: '',
                 index: createdForm.length,
               },
-            ]);
+            ])
           },
         },
         {
-          label: "Paragrafo",
+          label: 'Paragrafo',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "paragraph",
-                title: "",
-                answer: "",
+                type: 'paragraph',
+                title: '',
+                answer: '',
                 index: createdForm.length,
               },
-            ]);
+            ])
           },
         },
         {
-          label: "Múltipla Escolha",
+          label: 'Múltipla Escolha',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "multipleChoice",
-                title: "",
+                type: 'multipleChoice',
+                title: '',
                 index: createdForm.length,
                 options: [
-                  { name: "Opção 1", disabled: false },
-                  { name: "Opção 2", disabled: false },
+                  { name: 'Opção 1', disabled: false },
+                  { name: 'Opção 2', disabled: false },
                 ],
               },
-            ]);
+            ])
           },
         },
         {
-          label: "Caixa de Seleção",
+          label: 'Caixa de Seleção',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "selectionBox",
-                title: "",
+                type: 'selectionBox',
+                title: '',
                 index: createdForm.length,
                 options: [
-                  { name: "Opção 1", disabled: false },
-                  { name: "Opção 2", disabled: false },
+                  { name: 'Opção 1', disabled: false },
+                  { name: 'Opção 2', disabled: false },
                 ],
               },
-            ]);
+            ])
           },
         },
       ],
     },
     {
-      label: "Perguntas Quantitativas",
+      label: 'Perguntas Quantitativas',
       items: [
         {
-          label: "Estrelas",
+          label: 'Estrelas',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "avaliationStars",
-                title: "",
+                type: 'avaliationStars',
+                title: '',
                 answer: 0,
                 index: createdForm.length,
               },
-            ]);
+            ])
           },
         },
         {
-          label: "Números",
+          label: 'Números',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "avaliationNumber",
-                title: "",
+                type: 'avaliationNumber',
+                title: '',
                 answer: 0,
                 index: createdForm.length,
               },
-            ]);
+            ])
           },
         },
         {
-          label: "Emotes",
+          label: 'Emotes',
           command: () => {
             setCreatedForm([
               ...createdForm,
               {
-                type: "avaliationSmiles",
-                title: "",
+                type: 'avaliationSmiles',
+                title: '',
                 answer: 0,
                 index: createdForm.length,
               },
-            ]);
+            ])
           },
         },
       ],
     },
-  ];
+  ]
 
   function sendEmail(e) {
     var data = {
       to_email: e,
       link: selectedResearches,
-    };
+    }
 
     emailjs
       .send(
-        "service_qo63alm",
-        "template_da2q1my",
+        'service_qo63alm',
+        'template_da2q1my',
         data,
-        "user_bynkexbAzxrwLiNoexCMm",
+        'user_bynkexbAzxrwLiNoexCMm',
       )
       .then(
         function (response) {
-          console.log(response.status, response.text);
-          toast.success("O E-mail foi reenviado com sucesso!");
+          console.log(response.status, response.text)
+          toast.success('O E-mail foi reenviado com sucesso!')
         },
         function (err) {
-          console.log(err);
-          toast.success("Não foi possivel reenviar o E-mail!");
+          console.log(err)
+          toast.success('Não foi possivel reenviar o E-mail!')
         },
-      );
+      )
   }
 
   function reloadItens() {
-    getDataFormAnswers();
-    getDataResearches();
-    setPending(false);
+    getDataFormAnswers()
+    getDataResearches()
+    setPending(false)
     setTimeout(() => {
-      setPending(true);
-    }, 1500);
+      setPending(true)
+    }, 1500)
   }
 
   return (
@@ -371,7 +371,7 @@ function SelectedResearches(props) {
             label="Voltar"
             icon="pi pi-undo"
             onClick={() => {
-              setSelectedResearches("");
+              setSelectedResearches('')
             }}
           />
           <Button
@@ -441,11 +441,11 @@ function SelectedResearches(props) {
         <div
           className={
             toggleList
-              ? "p-col-6 p-d-flex editListItems-tab"
-              : "p-col-6 p-d-flex editListItems-active-tab"
+              ? 'p-col-6 p-d-flex editListItems-tab'
+              : 'p-col-6 p-d-flex editListItems-active-tab'
           }
           onClick={() => {
-            setToggleList(false);
+            setToggleList(false)
           }}
         >
           <p className="p-mx-auto">Formulário</p>
@@ -453,18 +453,18 @@ function SelectedResearches(props) {
         <div
           className={
             toggleList
-              ? "p-col-6 p-d-flex editListItems-active-tab"
-              : "p-col-6 p-d-flex editListItems-tab"
+              ? 'p-col-6 p-d-flex editListItems-active-tab'
+              : 'p-col-6 p-d-flex editListItems-tab'
           }
           onClick={() => {
-            setToggleList(true);
+            setToggleList(true)
           }}
         >
           {toggleEmail ? (
             <p className="p-mx-auto">
               Respostas via Link
               <span onClick={() => setToggleEmail(!toggleEmail)}>
-                {" "}
+                {' '}
                 (TROCAR)
               </span>
             </p>
@@ -472,7 +472,7 @@ function SelectedResearches(props) {
             <p className="p-mx-auto">
               Respostas via E-mail
               <span onClick={() => setToggleEmail(!toggleEmail)}>
-                {" "}
+                {' '}
                 (TROCAR)
               </span>
             </p>
@@ -505,7 +505,7 @@ function SelectedResearches(props) {
 
               <div>
                 {createdForm.map((item) => {
-                  if (item.type === "shortAnswer") {
+                  if (item.type === 'shortAnswer') {
                     return (
                       <>
                         <div className="p-my-2 p-p-3 researches-menu">
@@ -531,9 +531,9 @@ function SelectedResearches(props) {
                           />
                         </div>
                       </>
-                    );
+                    )
                   }
-                  if (item.type === "paragraph") {
+                  if (item.type === 'paragraph') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -559,9 +559,9 @@ function SelectedResearches(props) {
                           }
                         />
                       </div>
-                    );
+                    )
                   }
-                  if (item.type === "multipleChoice") {
+                  if (item.type === 'multipleChoice') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -611,7 +611,7 @@ function SelectedResearches(props) {
                                 </Button>
                               </span>
                             </div>
-                          );
+                          )
                         })}
                         <div className="p-field-checkbox">
                           <div
@@ -625,9 +625,9 @@ function SelectedResearches(props) {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  if (item.type === "selectionBox") {
+                  if (item.type === 'selectionBox') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -677,7 +677,7 @@ function SelectedResearches(props) {
                                 </Button>
                               </span>
                             </div>
-                          );
+                          )
                         })}
                         <div className="p-field-checkbox">
                           <div
@@ -691,9 +691,9 @@ function SelectedResearches(props) {
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  if (item.type === "avaliationStars") {
+                  if (item.type === 'avaliationStars') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -724,9 +724,9 @@ function SelectedResearches(props) {
                           <span className="rating-in">★</span>
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  if (item.type === "avaliationNumber") {
+                  if (item.type === 'avaliationNumber') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -757,9 +757,9 @@ function SelectedResearches(props) {
                           <span className="p-mx-1 researches-rating-in">5</span>
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  if (item.type === "avaliationSmiles") {
+                  if (item.type === 'avaliationSmiles') {
                     return (
                       <div className="p-my-2 p-p-3 researches-menu">
                         <div className="p-d-flex p-as-center">
@@ -810,9 +810,9 @@ function SelectedResearches(props) {
                           />
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  return null;
+                  return null
                 })}
               </div>
               {createdForm.length !== 0 && (
@@ -822,7 +822,7 @@ function SelectedResearches(props) {
                   label="Publicar Formulário"
                   iconPos="right"
                   onClick={() => {
-                    handleAddForms();
+                    handleAddForms()
                   }}
                 />
               )}
@@ -882,7 +882,7 @@ function SelectedResearches(props) {
                                   />
                                 </td>
                               </tr>
-                            );
+                            )
                           })}
                       </tbody>
                     </table>
@@ -919,9 +919,9 @@ function SelectedResearches(props) {
                               <td data-label="Data">
                                 {newCreatedFormEmail.map((answer) => {
                                   if (item === answer.email) {
-                                    return answer.date;
+                                    return answer.date
                                   }
-                                  return null;
+                                  return 'Sem resposta'
                                 })}
                               </td>
                               <td data-label="E-mail">{item}</td>
@@ -941,9 +941,25 @@ function SelectedResearches(props) {
                                           })
                                         }
                                       />
-                                    );
+                                    )
+                                  } else {
+                                    return (
+                                      <Button
+                                        type="submit"
+                                        disabled
+                                        className="p-mx-2 researches-button"
+                                        label="Visualizar"
+                                        iconPos="right"
+                                        onClick={() =>
+                                          setShowViewAnswersModal({
+                                            show: true,
+                                            formAnswers: answer,
+                                          })
+                                        }
+                                      />
+                                    )
                                   }
-                                  return null;
+                                  return null
                                 })}
 
                                 <Button
@@ -967,7 +983,7 @@ function SelectedResearches(props) {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default SelectedResearches;
+export default SelectedResearches
