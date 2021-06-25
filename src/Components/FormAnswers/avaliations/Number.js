@@ -16,7 +16,7 @@ function Number(props) {
     if (over) {
       setRating(
         rating.map((star, index) => {
-          if (index <= ratio - 1) {
+          if (index === ratio - 1) {
             return { S: true };
           }
           return star;
@@ -25,7 +25,7 @@ function Number(props) {
     } else {
       setRating(
         rating.map((star, index) => {
-          if (index <= ratio - 1) {
+          if (index === ratio - 1) {
             return { S: false };
           }
           return star;
@@ -50,7 +50,7 @@ function Number(props) {
       <div id="rating">
         <span
           className={`${
-            ratingStatus.active && ratingStatus.ratio >= 1
+            ratingStatus.active && ratingStatus.ratio === 1
               ? "rating-in"
               : rating[0].S && "rating-in"
           }`}
@@ -71,7 +71,7 @@ function Number(props) {
         </span>
         <span
           className={`${
-            ratingStatus.active && ratingStatus.ratio >= 2
+            ratingStatus.active && ratingStatus.ratio === 2
               ? "rating-in"
               : rating[1].S && "rating-in"
           }`}
@@ -92,7 +92,7 @@ function Number(props) {
         </span>
         <span
           className={`${
-            ratingStatus.active && ratingStatus.ratio >= 3
+            ratingStatus.active && ratingStatus.ratio === 3
               ? "rating-in"
               : rating[2].S && "rating-in"
           }`}
@@ -113,7 +113,7 @@ function Number(props) {
         </span>
         <span
           className={`${
-            ratingStatus.active && ratingStatus.ratio >= 4
+            ratingStatus.active && ratingStatus.ratio === 4
               ? "rating-in"
               : rating[3].S && "rating-in"
           }`}
@@ -134,7 +134,7 @@ function Number(props) {
         </span>
         <span
           className={`${
-            ratingStatus.active && ratingStatus.ratio >= 5
+            ratingStatus.active && ratingStatus.ratio === 5
               ? "rating-in"
               : rating[4].S && "rating-in"
           }`}

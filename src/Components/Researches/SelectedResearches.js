@@ -53,7 +53,7 @@ function SelectedResearches(props) {
 
   const [formSelected, setFormSelected] = useState([]);
 
-  const [color1, setColor1] = useState("363740");
+  const [color1, setColor1] = useState("#f4f4f4");
   const [color2, setColor2] = useState("363740");
 
   const [showAddEmailModal, setShowAddEmailModal] = useState(false);

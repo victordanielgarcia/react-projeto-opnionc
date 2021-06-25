@@ -272,7 +272,7 @@ function Dashboard() {
                     <h5 className="p-as-center p-text-center">SEM DADOS</h5>
                   </div>
                 ) : (
-                  <ChartBar />
+                  <ChartBar answersResponse={answersResponse()} />
                 )}
               </div>
             </div>

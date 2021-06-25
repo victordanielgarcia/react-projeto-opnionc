@@ -2,7 +2,12 @@ import React, { useCallback } from "react";
 
 import { ResponsivePie } from "@nivo/pie";
 
-function ChartPieNumber() {
+function ChartPieNumber(props) {
+  const { formAnswersList, reportType } = props;
+
+  const newFormAnswersList = formAnswersList.filter(
+    (item) => item.assessment_key === reportType.code,
+  );
   const createChart = useCallback(() => {
     const data = [
       {
@@ -151,7 +156,12 @@ function ChartPieNumber() {
     );
   }, []);
 
-  return createChart();
+  return (
+    <>
+      {JSON.stringify(newFormAnswersList.length)}
+      {createChart()}
+    </>
+  );
 }
 
 export default ChartPieNumber;

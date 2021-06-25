@@ -166,7 +166,10 @@ function ViewReport(props) {
                         </div>
                       </div>
                       <div className="p-p-2 background-researches-smile">
-                        <ChartPieStars />
+                        <ChartPieStars
+                          formAnswersList={formAnswersList}
+                          reportType={reportType}
+                        />
                       </div>
                     </div>
                   );
@@ -185,7 +188,10 @@ function ViewReport(props) {
                         </div>
                       </div>
                       <div className="p-p-2 background-researches-smile">
-                        <ChartPieNumber />
+                        <ChartPieNumber
+                          formAnswersList={formAnswersList}
+                          reportType={reportType}
+                        />
                       </div>
                     </div>
                   );
@@ -203,7 +209,10 @@ function ViewReport(props) {
                           </div>
                         </div>
                       </div>
-                      <ChartPieSmiles />
+                      <ChartPieSmiles
+                        formAnswersList={formAnswersList}
+                        reportType={reportType}
+                      />
                     </div>
                   );
                 }
