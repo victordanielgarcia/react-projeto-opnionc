@@ -200,7 +200,13 @@ function FormAnswers() {
         checkEmailResponse={checkEmailResponse}
       />
       <div className="p-my-4 p-d-flex p-ai-center p-jc-center formanswers-container">
-        <div className="p-d-flex p-flex-column formanswers-container-white">
+        <div
+          className="p-d-flex p-flex-column formanswers-container-white "
+          style={{
+            background: `#${FormSelected.fundo}`,
+            color: `#${FormSelected.text}`,
+          }}
+        >
           {!pending ? (
             <div className="spinner-form">
               <ProgressSpinner />

@@ -46,6 +46,8 @@ function AddResearches(props) {
       creation_date: moment().format("DD/MM/YYYY hh:mm:ss"),
       key_user: userData.id,
       name_user: userData.name,
+      fundo: "f4f4f4",
+      text: "212529",
     };
     const response = await addResearches(data);
     if (response) {

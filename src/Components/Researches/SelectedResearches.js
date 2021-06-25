@@ -53,8 +53,8 @@ function SelectedResearches(props) {
 
   const [formSelected, setFormSelected] = useState([]);
 
-  const [color1, setColor1] = useState("#f4f4f4");
-  const [color2, setColor2] = useState("363740");
+  const [color1, setColor1] = useState();
+  const [color2, setColor2] = useState();
 
   const [showAddEmailModal, setShowAddEmailModal] = useState(false);
   const [showViewAnswersModal, setShowViewAnswersModal] = useState({
@@ -150,12 +150,15 @@ function SelectedResearches(props) {
     setPending(false);
     const data = {
       createdForm,
+      fundo: color1,
+      text: color2,
       published: true,
     };
     const response = await editResearches(data, selectedResearches);
     if (response) {
       toast.success("Seu Formulário foi Publicado com Sucesso!");
       setPending(true);
+      getDataResearches();
     } else {
       setPending(true);
       toast.error("Algo deu Errado!");
@@ -184,8 +187,12 @@ function SelectedResearches(props) {
     if (newData2.emailList) {
       setEmailList(newData2.emailList);
     }
-    // eslint-disable-next-line
   }, [researchesList, selectedResearches]);
+
+  useEffect(() => {
+    setColor1(formSelected.fundo);
+    setColor2(formSelected.text);
+  }, [formSelected]);
 
   const newCreatedFormLink = formAnswersList.filter(
     (item) => item.assessment_key === selectedResearches && !item.email,
@@ -394,21 +401,43 @@ function SelectedResearches(props) {
         {!toggleList ? (
           <div>
             {formSelected.published ? (
-              <></>
+              <>
+                {color1 && color2 && (
+                  <>
+                    <span className="p-mx-2">Cor do Fundo:</span>
+                    <ColorPicker
+                      className="p-mx-2"
+                      value={color1}
+                      onChange={(e) => setColor1(e.value)}
+                    />
+                    <span className="p-mx-2">Cor das Letras:</span>
+                    <ColorPicker
+                      className="p-mx-2 p-ml-2 p-mb-1"
+                      value={color2}
+                      onChange={(e) => setColor2(e.value)}
+                    />
+                  </>
+                )}
+              </>
             ) : (
               <>
-                <span className="p-mx-2">Cor do Fundo:</span>
-                <ColorPicker
-                  className="p-mx-2"
-                  value={color1}
-                  onChange={(e) => setColor1(e.value)}
-                />
-                <span className="p-mx-2">Cor das Letras:</span>
-                <ColorPicker
-                  className="p-mx-2 p-ml-2 p-mb-1"
-                  value={color2}
-                  onChange={(e) => setColor2(e.value)}
-                />
+                {color1 && color2 && (
+                  <>
+                    <span className="p-mx-2">Cor do Fundo:</span>
+                    <ColorPicker
+                      className="p-mx-2"
+                      value={color1}
+                      onChange={(e) => setColor1(e.value)}
+                    />
+                    <span className="p-mx-2">Cor das Letras:</span>
+                    <ColorPicker
+                      className="p-mx-2 p-ml-2 p-mb-1"
+                      value={color2}
+                      onChange={(e) => setColor2(e.value)}
+                    />
+                  </>
+                )}
+
                 <Menu model={items} popup ref={menu} />
                 <Button
                   className="research-button-addquestion"
