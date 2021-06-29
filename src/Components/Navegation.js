@@ -37,9 +37,15 @@ function Navegation() {
           <div className="p-flex-column p-ai-center p-d-flex">
             <div className="p-mt-4">
               {navegationStatus ? (
-                <Avatar label="V" className="navegation-avatar" />
+                <Avatar
+                  label={userData ? userData.name[0] : ""}
+                  className="navegation-avatar"
+                />
               ) : (
-                <Avatar label="V" className="navegation-avatar-closed" />
+                <Avatar
+                  label={userData ? userData.name[0] : ""}
+                  className="navegation-avatar-closed"
+                />
               )}
             </div>
             {navegationStatus && (

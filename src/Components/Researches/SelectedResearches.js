@@ -942,64 +942,89 @@ function SelectedResearches(props) {
                           </tr>
                         </thead>
                         <tbody>
-                          {emailList.map((item, index) => (
-                            <tr>
-                              <td data-label="#">{index + 1}</td>
-                              <td data-label="Data">
-                                {newCreatedFormEmail.map((answer) => {
-                                  if (item === answer.email) {
-                                    return answer.date;
-                                  }
-                                  return "Sem resposta";
-                                })}
-                              </td>
-                              <td data-label="E-mail">{item}</td>
-                              <td data-label="Ação">
-                                {newCreatedFormEmail.map((answer) => {
-                                  if (item === answer.email) {
-                                    return (
-                                      <Button
-                                        type="submit"
-                                        className="p-mx-2 researches-button"
-                                        label="Visualizar"
-                                        iconPos="right"
-                                        onClick={() =>
-                                          setShowViewAnswersModal({
-                                            show: true,
-                                            formAnswers: answer,
-                                          })
-                                        }
-                                      />
-                                    );
-                                  } else {
-                                    return (
-                                      <Button
-                                        type="submit"
-                                        disabled
-                                        className="p-mx-2 researches-button"
-                                        label="Visualizar"
-                                        iconPos="right"
-                                        onClick={() =>
-                                          setShowViewAnswersModal({
-                                            show: true,
-                                            formAnswers: answer,
-                                          })
-                                        }
-                                      />
-                                    );
-                                  }
-                                })}
+                          {emailList
+                            .filter(
+                              (item) =>
+                                item
+                                  .toUpperCase()
+                                  .indexOf(inputSearch.toUpperCase()) !== -1,
+                            )
+                            .map((item, index) => (
+                              <tr>
+                                <td data-label="#">{index + 1}</td>
+                                <td data-label="Data">
+                                  {newCreatedFormEmail
+                                    .filter(
+                                      (item) =>
+                                        item.date
+                                          .toUpperCase()
+                                          .indexOf(
+                                            inputSearch.toUpperCase(),
+                                          ) !== -1,
+                                    )
+                                    .map((answer) => {
+                                      if (item === answer.email) {
+                                        return answer.date;
+                                      }
+                                      return "Sem resposta";
+                                    })}
+                                </td>
+                                <td data-label="E-mail">{item}</td>
+                                <td data-label="Ação">
+                                  {newCreatedFormEmail
+                                    .filter(
+                                      (item) =>
+                                        item.email
+                                          .toUpperCase()
+                                          .indexOf(
+                                            inputSearch.toUpperCase(),
+                                          ) !== -1,
+                                    )
+                                    .map((answer) => {
+                                      if (item === answer.email) {
+                                        return (
+                                          <Button
+                                            type="submit"
+                                            className="p-mx-2 researches-button"
+                                            label="Visualizar"
+                                            iconPos="right"
+                                            onClick={() =>
+                                              setShowViewAnswersModal({
+                                                show: true,
+                                                formAnswers: answer,
+                                              })
+                                            }
+                                          />
+                                        );
+                                      } else {
+                                        return (
+                                          <Button
+                                            type="submit"
+                                            disabled
+                                            className="p-mx-2 researches-button"
+                                            label="Visualizar"
+                                            iconPos="right"
+                                            onClick={() =>
+                                              setShowViewAnswersModal({
+                                                show: true,
+                                                formAnswers: answer,
+                                              })
+                                            }
+                                          />
+                                        );
+                                      }
+                                    })}
 
-                                <Button
-                                  type="submit"
-                                  className="p-mx-2 researches-button-sended"
-                                  label="Reenviar"
-                                  iconPos="right"
-                                  onClick={() => sendEmail(item)}
-                                />
-                              </td>
-                            </tr>
-                          ))}
+                                  <Button
+                                    type="submit"
+                                    className="p-mx-2 researches-button-sended"
+                                    label="Reenviar"
+                                    iconPos="right"
+                                    onClick={() => sendEmail(item)}
+                                  />
+                                </td>
+                              </tr>
+                            ))}
                         </tbody>
                       </table>
                     </div>

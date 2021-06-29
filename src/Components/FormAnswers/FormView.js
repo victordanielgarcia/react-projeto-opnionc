@@ -122,7 +122,7 @@ function FormView(props) {
                       </div>
                     );
                   }
-                  if (item.type === "selectionBox") {
+                  if (item.type === "multipleChoice") {
                     return (
                       <div className="p-p-3 formAnswers-item">
                         <div className="p-d-flex p-as-center">
@@ -178,7 +178,7 @@ function FormView(props) {
                     );
                   }
 
-                  if (item.type === "multipleChoice") {
+                  if (item.type === "selectionBox") {
                     return (
                       <div className="p-p-3 formAnswers-item">
                         <div className="p-d-flex p-as-center">

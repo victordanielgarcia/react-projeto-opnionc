@@ -7,8 +7,8 @@ function Header() {
     <div className="p-d-flex p-as-center p-jc-center single-page-background-banner">
       <div className="p-d-flex p-as-center p-jc-center banner-background">
         <h3 className="p-d-flex p-as-center p-jc-center">
-          Crie Formulários Online, <br /> Colete dados em tempo real e <br />
-          Compartilhe via e-mail.
+          Crie Formulários Online, <br /> Compartilhe por e-mail e <br /> Colete
+          dados em tempo real.
         </h3>
       </div>
       <div className="p-d-flex p-as-center p-jc-center banner-background">
