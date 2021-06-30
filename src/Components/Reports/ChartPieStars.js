@@ -5,10 +5,6 @@ import { ResponsivePie } from '@nivo/pie'
 function ChartPie(props) {
   const { formAnswersList, reportType } = props
 
-  const newFormAnswersList = formAnswersList.filter(
-    (item) => item.assessment_key === reportType.code,
-  )
-
   const [data, setData] = useState([
     {
       id: '★',
@@ -71,6 +67,7 @@ function ChartPie(props) {
     )
     let newData = []
     for (let i = 0; i < newFormAnswersList.length; i++) {
+      // eslint-disable-next-line
       const response = newFormAnswersList[i].createdForm.map((item) => {
         if (item.type === 'avaliationStars' && item.answer > 0) {
           return item.answer
@@ -80,6 +77,7 @@ function ChartPie(props) {
       newData.push(parseType(newResponse))
     }
     const newResponse = newData.reduce(
+      // eslint-disable-next-line
       (a, c) => ((a[c] = (a[c] || 0) + 1), a),
       Object.create(null),
     )
@@ -88,6 +86,7 @@ function ChartPie(props) {
         return { ...item, value: newResponse[item.id] }
       }),
     )
+    // eslint-disable-next-line
   }, [])
 
   const createChart = useCallback(() => {

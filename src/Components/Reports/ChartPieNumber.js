@@ -44,6 +44,7 @@ function ChartPieNumber(props) {
     )
     let newData = []
     for (let i = 0; i < newFormAnswersList.length; i++) {
+      // eslint-disable-next-line
       const response = newFormAnswersList[i].createdForm.map((item) => {
         if (item.type === 'avaliationNumber' && item.answer > 0) {
           return item.answer
@@ -53,6 +54,7 @@ function ChartPieNumber(props) {
       newData.push(newResponse)
     }
     const newResponse = newData.reduce(
+      // eslint-disable-next-line
       (a, c) => ((a[c] = (a[c] || 0) + 1), a),
       Object.create(null),
     )
@@ -61,6 +63,7 @@ function ChartPieNumber(props) {
         return { ...item, value: newResponse[item.id] }
       }),
     )
+    // eslint-disable-next-line
   }, [])
 
   const createChart = useCallback(() => {

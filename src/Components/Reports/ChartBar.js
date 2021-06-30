@@ -33,6 +33,7 @@ function ChartBar(props) {
       setData(last7DaysName)
       console.log(last7DaysName)
     }
+    // eslint-disable-next-line
   }, [])
 
   const createChart = useCallback(() => {

@@ -42,18 +42,18 @@ function ChartPieNumber(props) {
     const newFormAnswersList = formAnswersList.filter(
       (item) => item.assessment_key === reportType.code,
     )
-    let newData = []
     let newOptions = []
     for (let i = 0; i < newFormAnswersList.length; i++) {
+      // eslint-disable-next-line
       const response = newFormAnswersList[i].createdForm.map((item) => {
         if (item.type === 'multipleChoice') {
           return item.options
         }
       })
       const [newResponse] = response.filter((vR) => vR)
-
-      // eslint-disable-next-line no-loop-func
+      // eslint-disable-next-line
       newResponse.map((item) => {
+        // eslint-disable-next-line
         if (!newOptions.find((opt) => item.name === opt.id)) {
           newOptions.push({
             id: item.name,
@@ -86,6 +86,7 @@ function ChartPieNumber(props) {
       })
     }
     setData(newOptions)
+    // eslint-disable-next-line
   }, [])
 
   const createChart = useCallback(() => {

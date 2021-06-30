@@ -6,7 +6,6 @@ import { AiFillStar } from "react-icons/ai";
 import "../Styles/Plans.css";
 import {
   editUser,
-  getAllUsers,
   searchCurrentUser,
 } from "../Controllers/ControllerUser";
 import { toast } from "react-toastify";
