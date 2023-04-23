@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+<h2> Crie Formulários Online ( Projeto da Faculdade )</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3> https://opnionc.victordanigarcia.com.br </h3>
 
-## Available Scripts
+<img src="https://i.ibb.co/zxVHWnZ/Sem-t-tulo.png" alt="exemplo imagem" width="1000px;">
 
-In the project directory, you can run:
+> Esse projeto é um trabalho de faculdade que permite aos usuários criar formulários online personalizados, compartilhá-los facilmente por e-mail e coletar dados em tempo real. Com essa ferramenta, os usuários podem criar formulários para uma variedade de finalidades, como pesquisas, inscrições, avaliações e muito mais.
 
-### `yarn start`
+----
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h3> 🔧 Ajustes e melhorias </h3>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-### `yarn test`
+- [ ] Refatoração do Código.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+----
 
-### `yarn build`
+<h3> ⚙️ Tecnologias </h3>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![FIREBASE](https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white)
+![PRIMEREACT](https://img.shields.io/badge/PrimeReact-03c4e8?style=for-the-badge&logo=react&logoColor=white)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+----
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h3> 💼 Desenvolvedores </h3>
 
-### `yarn eject`
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/77544803?s=400&u=84963ee887a8465a020b9125470ba470f73e67e1&v=4" width="100px;" alt="Foto do Victor Daniel no GitHub"/><br>
+        <sub>
+          <b>Victor Daniel</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+----
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📝 Licença
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
