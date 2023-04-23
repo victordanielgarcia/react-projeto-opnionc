@@ -41,6 +41,14 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
         </sub>
       </a>
     </td>
+     <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/37669842?v=4" width="100px;" alt="Foto do Victor Shoose no GitHub"/><br>
+        <sub>
+          <b>Victor Shoose</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
